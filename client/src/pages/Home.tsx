@@ -5,17 +5,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { FileText, Plus, Users, TrendingUp } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import type { UserProfile, Resume } from "@shared/schema";
 
 export default function Home() {
   const { user, isLoading } = useAuth();
   const [, setLocation] = useLocation();
 
-  const { data: profile } = useQuery({
+  const { data: profile } = useQuery<UserProfile>({
     queryKey: ["/api/profile"],
     enabled: !!user,
   });
 
-  const { data: resumes } = useQuery({
+  const { data: resumes = [] } = useQuery<Resume[]>({
     queryKey: ["/api/resumes"],
     enabled: !!user,
   });

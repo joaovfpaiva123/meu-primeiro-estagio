@@ -110,21 +110,21 @@
 
 /* Custom button hover effects */
 .btn-primary {
-  @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  @apply bg-primary text-primary-foreground hover:bg-primary hover:opacity-90 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
 }
 
 .btn-secondary {
-  @apply border border-border hover:border-primary/50 text-foreground hover:bg-primary/10 transition-all duration-200;
+  @apply border border-border hover:border-primary hover:border-opacity-50 text-foreground hover:bg-primary hover:bg-opacity-10 transition-all duration-200;
 }
 
 /* Form input focus effects */
 .form-input {
-  @apply bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200;
+  @apply bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-20 transition-all duration-200;
 }
 
 /* Card hover effects */
 .card-hover {
-  @apply transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5;
+  @apply transition-all duration-300 hover:border-primary hover:border-opacity-50 hover:shadow-lg;
 }
 
 /* Progress bar animations */

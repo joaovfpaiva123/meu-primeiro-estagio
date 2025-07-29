@@ -10,13 +10,20 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import type { User } from "@shared/schema";
+
+interface AdminStats {
+  userCount: number;
+  resumeCount: number;
+  users: User[];
+}
 
 export default function Admin() {
   const { user, isLoading } = useAuth();
   const { toast } = useToast();
   const [, setLocation] = useLocation();
 
-  const { data: stats, isLoading: statsLoading } = useQuery({
+  const { data: stats, isLoading: statsLoading } = useQuery<AdminStats>({
     queryKey: ["/api/admin/stats"],
     enabled: !!user,
     retry: false,
@@ -121,7 +128,7 @@ export default function Admin() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-600">
-                {stats?.userCount > 0 ? Math.round((stats.resumeCount / stats.userCount) * 100) : 0}%
+                {(stats?.userCount && stats?.resumeCount) ? Math.round((stats.resumeCount / stats.userCount) * 100) : 0}%
               </div>
               <p className="text-xs text-muted-foreground">Usuários que criaram currículos</p>
             </CardContent>
@@ -213,13 +220,13 @@ export default function Admin() {
               <div className="flex justify-between items-center">
                 <span className="text-sm text-muted-foreground">Média de currículos por usuário</span>
                 <span className="font-semibold">
-                  {stats?.userCount > 0 ? (stats.resumeCount / stats.userCount).toFixed(1) : '0.0'}
+                  {(stats?.userCount && stats?.resumeCount) ? (stats.resumeCount / stats.userCount).toFixed(1) : '0.0'}
                 </span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm text-muted-foreground">Taxa de engajamento</span>
                 <span className="font-semibold text-green-600">
-                  {stats?.userCount > 0 ? Math.round((stats.resumeCount / stats.userCount) * 100) : 0}%
+                  {(stats?.userCount && stats?.resumeCount) ? Math.round((stats.resumeCount / stats.userCount) * 100) : 0}%
                 </span>
               </div>
               <div className="flex justify-between items-center">

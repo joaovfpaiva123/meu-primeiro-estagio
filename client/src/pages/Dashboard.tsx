@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import type { Resume } from "@shared/schema";
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -32,12 +33,12 @@ export default function Dashboard() {
   const [jobDialogOpen, setJobDialogOpen] = useState(false);
   const [improvementDialogOpen, setImprovementDialogOpen] = useState(false);
 
-  const { data: resumes, isLoading: resumesLoading } = useQuery({
+  const { data: resumes = [], isLoading: resumesLoading } = useQuery<Resume[]>({
     queryKey: ["/api/resumes"],
     enabled: !!user,
   });
 
-  const { data: suggestions } = useQuery({
+  const { data: suggestions = [] } = useQuery<string[]>({
     queryKey: ["/api/improvement-suggestions"],
     enabled: !!user,
   });
@@ -266,7 +267,7 @@ export default function Dashboard() {
                     <DialogTitle>Sugestões para Melhorar seu Perfil</DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4">
-                    {suggestions?.suggestions?.map((suggestion: string, index: number) => (
+                    {suggestions?.map((suggestion: string, index: number) => (
                       <div key={index} className="flex items-start space-x-3 p-4 bg-muted rounded-lg">
                         <Lightbulb className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                         <p className="text-sm text-foreground">{suggestion}</p>

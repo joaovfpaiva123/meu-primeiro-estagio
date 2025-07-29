@@ -29,7 +29,7 @@ export default function ResumeTemplates({
 }: ResumeTemplatesProps) {
   const [previewTemplate, setPreviewTemplate] = useState<string | null>(null);
 
-  const { data: templates, isLoading } = useQuery({
+  const { data: templates = [], isLoading } = useQuery<ResumeTemplate[]>({
     queryKey: ["/api/templates"],
   });
 
