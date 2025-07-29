@@ -1,0 +1,40 @@
+#### **Contexto:**
+Você é um desenvolvedor full-stack sênior e especialista em IA. Sua tarefa é construir uma aplicação web completa e robusta utilizando o **Replit Agent**. A aplicação deve seguir as melhores práticas de desenvolvimento, com código limpo, uma interface de usuário moderna e uma experiência de uso intuitiva.
+
+#### **Tarefa:**
+Construir uma aplicação web chamada **"Meu Primeiro Estágio"**. O objetivo é oferecer um gerador de currículos gratuito, potencializado por IA, para universitários de ciências exatas (Engenharia, Ciência da Computação, Matemática, etc.). O aplicativo funcionará como uma ferramenta de captação de leads. O produto final para o usuário será um currículo profissional em formato PDF.
+
+#### **Diretrizes:**
+
+1.  **Tecnologias (Tech Stack):**
+    * **Backend:** Utilize **Supabase** para gerenciar a autenticação de usuários (login com e-mail/senha e Google), o banco de dados (para armazenar informações de usuários e dados dos currículos) e o armazenamento de arquivos (para salvar os PDFs gerados).
+    * **Frontend:** Utilize **React com TypeScript** e **Tailwind CSS** para a estilização.
+    * **Segurança:** Utilize a ferramenta **'Secrets' do Replit** para armazenar todas as chaves de API (Supabase e ChatGPT) de forma segura.
+
+2.  **Perfis de Usuário:**
+    * **ALUNO:** O usuário principal. Pode se cadastrar, criar, visualizar e baixar múltiplos currículos.
+    * **ADMIN:** Um painel simples, protegido por senha, para que a equipe interna possa visualizar os dados dos usuários cadastrados (leads).
+
+3.  **Fluxo de Geração do Primeiro Currículo (Onboarding Rápido):**
+    * **Passo 1: Cadastro:** O usuário se cadastra. A primeira pergunta deve ser: "Você já possui um currículo que deseja aprimorar?".
+    * **Passo 2:** Se o usuário responder "Não", exiba um formulário com 3 a 5 perguntas essenciais (Nome Completo, Universidade e Curso, Principais Habilidades, Descreva um projeto relevante), permitindo respostas em texto ou áudio. Se responder "Sim", permita o upload do currículo.
+    * **Passo 3 (Processamento com IA):** Implemente uma função de backend que envie as informações coletadas para a API do ChatGPT, instruindo-a a retornar um objeto JSON estruturado com seções de currículo.
+    * **Passo 4 (Seleção de Template e Geração):** Enquanto a IA processa, exiba 3 opções de templates para o usuário escolher. Ao receber o JSON, popule o template e gere um PDF para download, salvando uma cópia no Supabase Storage.
+
+4.  **Funcionalidade Pós-Geração (Currículos Específicos):**
+    * Após a criação do primeiro currículo, o usuário terá um painel para visualizar seus documentos.
+    * Exiba a pergunta: "Você tem alguma vaga em mente?".
+    * **Se Sim:** Permita que o usuário insira a descrição da vaga (texto, PDF ou imagem). Utilize uma API de OCR para extrair o texto de arquivos. Envie o perfil do usuário e a descrição da vaga para a IA refinar o currículo e gerar uma nova versão em PDF.
+    * **Se Não:** Exiba sugestões de como o aluno pode enriquecer seu currículo.
+
+5.  **Design e Experiência do Usuário (UI/UX):**
+    * O design deve ser **mobile-first**.
+    * A estética deve ser profissional, limpa e moderna, inspirada na identidade visual da **Alura** e da **Rocketseat**.
+    * Adote um tema escuro (dark mode) com a seguinte paleta de cores: Fundo Principal `#111827`, Superfície `#1F2937`, Texto Principal `#F9FAFB`, Texto Secundário `#9CA3AF`, e Cor de Destaque Laranja `#F97316`.
+    * A experiência do usuário deve ser fluida e rápida.
+
+#### **Restrições:**
+
+* A ferramenta deve ser 100% gratuita para o usuário do perfil ALUNO.
+* O foco inicial (MVP) é o fluxo principal de geração do primeiro currículo.
+* Evite adicionar funcionalidades que gerem custos operacionais elevados.
